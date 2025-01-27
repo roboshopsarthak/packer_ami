@@ -1,0 +1,35 @@
+packer {
+  required_plugins {
+    amazon = {
+      source  = "github.com/hashicorp/amazon"
+    }
+  }
+}
+
+source "amazon-ebs" "ubuntu" {
+  ami_name      = "rhel-golden-image"
+  instance_type = "t2.micro"
+  region        = "us-east-1"
+  source_ami_filter {
+    filters = {
+      name                = "RHEL-9-DevOps-Practice"
+      root-device-type    = "ebs"
+      virtualization-type = "hvm"
+    }
+    most_recent = true
+    owners      = ["973714476881"]
+  }
+  ssh_username = "ec2-user"
+  ssh_password = "DevOps321"
+}
+
+build {
+  sources = [
+    "source.amazon-ebs.ubuntu"
+  ]
+    provisioner "shell" {
+    inline = [
+        "sudo labauto ansible"
+    ]
+    }
+}
