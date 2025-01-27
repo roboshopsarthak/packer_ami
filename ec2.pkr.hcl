@@ -7,7 +7,7 @@ packer {
   }
 }
 
-source "amazon-ebs" "ubuntu" {
+source "amazon-ebs" "ec2" {
   ami_name      = "rhel-golden-image"
   instance_type = "t2.micro"
   region        = "us-east-1"
