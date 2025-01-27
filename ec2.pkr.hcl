@@ -26,7 +26,7 @@ source "amazon-ebs" "ubuntu" {
 
 build {
   sources = [
-    "source.amazon-ebs.ubuntu"
+    "source.amazon-ebs.ec2"
   ]
     provisioner "shell" {
     inline = [
